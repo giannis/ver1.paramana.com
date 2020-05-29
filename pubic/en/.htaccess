@@ -1,0 +1,40 @@
+ErrorDocument 404 /404.php
+
+ServerSignature Off
+SetEnv TZ Europe/Athens
+
+<IfModule mod_deflate.c>
+<FilesMatch "\.(js|css)$">
+SetOutputFilter DEFLATE
+</FilesMatch>
+</IfModule>
+
+# MONTH
+<FilesMatch "\.(flv|gif|jpg|jpeg|png|ico|swf)$">
+   Header set Cache-Control "max-age=2592000"
+</FilesMatch>
+
+# WEEK
+<FilesMatch "\.(js|css|pdf|txt)$">
+   Header set Cache-Control "max-age=604800"
+</FilesMatch>
+
+# DAY
+<FilesMatch "\.(html|htm)$">
+   Header set Cache-Control "max-age=43200"
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} !^/robots\.txt$
+RewriteCond %{HTTP_HOST} !^ver1\.paramana\.com$ [NC]
+RewriteRule ^(.*)$ http://ver1.paramana.com/$1 [R=301,L]
+
+RewriteRule ^details/(.+).html$ details/$1.html [L]
+RewriteRule ^(.+).html$ giveMe.php?js=off&page=$1 [L]
+RewriteRule ^.*css/(.+)\.css$ css/$1.css [L]
+RewriteRule ^.*js/(.+)\.js$ js/$1.js [L]
+RewriteRule ^.*images/(.+)$ images/$1 [L]
+</IfModule>

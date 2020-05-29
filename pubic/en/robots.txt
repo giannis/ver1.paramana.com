@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+Disallow: /bin
+Disallow: /css
+Disallow: /js
+Disallow: /details
+Disallow: /images
+
+# Google Image
+User-agent: Googlebot-Image
+Disallow:
+Allow: /*
+ 
+# Google AdSense
+User-agent: Mediapartners-Google*
+Disallow:
+Allow: /*
+ 
+# Internet Archiver Wayback Machine
+User-agent: ia_archiver
+Disallow: /
+ 
+# digg mirror
+User-agent: duggmirror
+Disallow: /
+
+Sitemap: http://paramana.com/sitemap.xml.gz
